@@ -26,63 +26,36 @@ This commands includes
 • Other IP Commands e.g. show ip route etc.
 <BR>
 
-## PROGRAM
-# CLIENT.PY
-```
-import socket
-
-s = socket.socket()
-s.connect(('localhost', 10000))
-
-while True:
-    ip = input("Enter the website you want to ping (or type 'exit' to quit): ")
-    s.send(ip.encode('utf-8'))
-    if ip.lower() == 'exit':
-        break
-    print(s.recv(4096).decode('utf-8'))
-
-s.close()
-```
-# SERVER.PY
-```
-import socket
-import subprocess
-
-s = socket.socket()
-s.bind(('localhost', 10000))
-s.listen(5)
-
-print("Server listening on port 10000...")
-
-c, addr = s.accept()
-print(f"Connection from {addr}")
-
-while True:
-    try:
-        hostname = c.recv(1024).decode('utf-8')
-
-        if not hostname or hostname.lower() == 'exit':
-            print("Client disconnected.")
-            break
-
-        result = subprocess.run(
-            ["ping", hostname],
-            capture_output=True,
-            text=True
-        )
-
-        output = result.stdout
-
-        c.send(output.encode('utf-8'))
-
-    except Exception as e:
-        c.send(f"Ping failed: {e}".encode('utf-8'))
-
-c.close()
-s.close()
-```
 ## Output
-<img width="1389" height="424" alt="Screenshot 2026-05-24 135237" src="https://github.com/user-attachments/assets/d799abaa-e24f-4955-84cd-2ad30a3bc108" />
+# ping
+<img width="568" height="477" alt="Screenshot 2026-05-25 135655" src="https://github.com/user-attachments/assets/9a4d6d5f-8c1e-4e34-bf91-9dea75ea4a13" />
+
+# tracert
+<img width="546" height="219" alt="Screenshot 2026-05-25 135718" src="https://github.com/user-attachments/assets/783fb121-d0da-40bd-bba2-961e5e4b0b46" />
+
+# nslookup
+<img width="390" height="488" alt="Screenshot 2026-05-25 135742" src="https://github.com/user-attachments/assets/2cef19eb-2bb7-45a1-bb6c-43c1004511f8" />
+
+# netstat
+<img width="629" height="573" alt="Screenshot 2026-05-25 135950" src="https://github.com/user-attachments/assets/60f5055c-1732-4740-9eec-92f58f9ee2d6" />
+
+# ipconfig
+<img width="793" height="500" alt="Screenshot 2026-05-25 140934" src="https://github.com/user-attachments/assets/8f1384cb-0c4b-41da-8e08-8357c585d546" />
+
+# getmac
+<img width="729" height="156" alt="Screenshot 2026-05-25 141158" src="https://github.com/user-attachments/assets/51414a23-5f51-496a-83b7-ae822cccc12a" />
+
+# hostname
+<img width="617" height="52" alt="Screenshot 2026-05-25 141211" src="https://github.com/user-attachments/assets/16957468-d3fb-4bd5-ad6b-986abfbd8ade" />
+
+# nbtstat
+<img width="821" height="454" alt="Screenshot 2026-05-25 141223" src="https://github.com/user-attachments/assets/0c156f6a-fe2d-4218-9851-2aae5e6eadb2" />
+
+# arp
+<img width="771" height="584" alt="Screenshot 2026-05-25 141235" src="https://github.com/user-attachments/assets/48531b55-9518-4c96-8ea9-7292ce355986" />
+
+# systeminfo
+<img width="739" height="878" alt="Screenshot 2026-05-25 141306" src="https://github.com/user-attachments/assets/7fefad4b-17a1-4572-bd08-7d662abaaa5d" />
 
 ## Result
 
